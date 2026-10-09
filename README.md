@@ -26,7 +26,9 @@ Never commit `.env` or real credentials.
 
 ## Coolify deploy
 
-Create a PostgreSQL resource and an application from this repository. Set `DATABASE_URL` and `NEXT_PUBLIC_APP_URL` in the application environment. Use the included `Dockerfile`; expose port `3000`. Run the migration as a one-off/release command (`npx prisma migrate deploy`) before first traffic, then seed only if desired (`npm run db:seed`). Configure the health check path to `/api/health`. Coolify can provide TLS and the public domain; no paid/external service is required.
+Create a PostgreSQL resource and a Git-based application from this repository using the **Railpack** build pack and the configured GitHub App source. Set `DATABASE_URL` and `NEXT_PUBLIC_APP_URL` in the application environment, expose port `3000`, and configure the public health path as `/api/health`. Run `npx prisma@6.19.0 migrate deploy` as a one-off/release command before first traffic, then seed only if desired (`npx tsx@4.23.15 prisma/seed.ts`). Railpack runs the package build script, which generates the Prisma client before `next build`. Coolify can provide TLS and the public domain; no paid/external service is required.
+
+The Dockerfile remains as a local/container fallback, but the production Coolify application is configured for Railpack.
 
 ## Features
 
