@@ -1,0 +1,11 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: vendafacil
+      POSTGRES_USER: vendafacil
+      POSTGRES_PASSWORD: local_dev_only
+    ports: ['5432:5432']
+    volumes: [vendafacil_pg:/var/lib/postgresql/data]
+volumes:
+  vendafacil_pg:
